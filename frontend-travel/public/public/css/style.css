@@ -1,0 +1,176 @@
+body {
+    font-family: Arial, sans-serif;
+    /* Offset for fixed navbar */
+}
+
+.navbar-brand img {
+    height: 70px;
+}
+
+.navbar-nav .nav-link {
+    margin-left: 15px;
+}
+
+.navbar-nav .btn {
+    margin-left: 15px;
+}
+
+/* CSS untuk elemen dengan kelas overlap-5 */
+.overlap-5 {
+    position: relative;
+    width: 1328px;
+    height: 702px;
+    top: 0;
+    left: 122px;
+    /* Tambahkan posisi offset jika diperlukan untuk menyesuaikan */
+}
+
+/* CSS untuk elemen dengan kelas temukan-keindahan */
+.temukan-keindahan {
+    position: relative;
+    width: 750px;
+    top: 300px; /* Sesuaikan offset untuk posisi yang sama */
+    left: 0;
+    font-family: "Montserrat", Helvetica;
+    font-weight: 700;
+    color: #0f53b7;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: 50.4px;
+    margin-top: -100px; /* Menggeser kembali ke posisi semula */
+}
+
+/* CSS untuk elemen dengan kelas rekomendasi-terbaik */
+.rekomendasi-terbaik {
+    position: relative;
+    width: 645px;
+    top: 300px; /* Sesuaikan offset untuk posisi yang sama */
+    left: 0;
+    font-family: "Roboto", Helvetica;
+    font-weight: 400;
+    color: #1e1e1e;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 33.6px;
+}
+
+/* CSS untuk elemen dengan kelas gambar-header */
+.gambar-header {
+    position: relative;
+    width: 710px;
+    height: 702px;
+    top: -150px;
+    left: 618px;
+}
+
+/* CSS untuk elemen dengan kelas line */
+.line {
+    position: relative;
+    width: 1430px;
+    height: 1px;
+    top: 795px;
+    left: 10px;
+    object-fit: cover;
+}
+
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding-top: 70px;
+    /* To account for the fixed navbar height */
+}
+
+.login-image {
+    background: url('../images/background.png') no-repeat center center;
+    background-size: cover;
+}
+
+.register-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding-top: 70px;
+    /* To account for the fixed navbar height */
+}
+
+.register-image {
+    background: url('../images/background.png') no-repeat center center;
+    background-size: cover;
+}
+
+.custom-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f9fa; /* Warna latar belakang opsional */
+    padding-top: 150px; /* Menambahkan jarak dari atas */
+    padding-left: 130px;
+}
+
+.custom-content {
+    text-align: left;
+}
+
+.custom-content h1 {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    color: #0f53b7;
+    font-size: 36px;
+    line-height: 1.4;
+}
+
+.custom-content p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    color: #1e1e1e;
+    font-size: 24px;
+    line-height: 1.4;
+}
+
+.custom-image {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-top: 200px;
+    transform: translate(10%, 20%); /* Menyesuaikan posisi gambar */
+}
+
+.custom-line {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin-top: 180px;
+}
+
+.footer-logo {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.footer-bottom {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+.footer a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #0d6efd;
+    text-decoration: underline;
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplore Indonesia</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <style>
+        /* Menambah jarak untuk form pencarian agar tidak tertutup navbar */
+        .search-container {
+            margin-top: 120px; /* Sesuaikan nilai ini dengan tinggi navbar Anda */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorite.html">Favorite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <!-- Button Masuk -->
+                    <li class="nav-item" id="loginButton">
+                        <a class="btn btn-primary" href="login.html">Masuk</a>
+                    </li>
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown d-none" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://placehold.jp/150x150.png" alt="Profile" class="rounded-circle"
+                                style="width: 30px; height: 30px;">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="user.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Form Section -->
+    <div class="container search-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form class="d-flex mb-4" id="search-form">
+                    <input class="form-control me-2" type="search" id="search-input" placeholder="Cari Wisata" aria-label="Search">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Section -->
+    <div class="container mt-5">
+        <div class="row justify-content-center" id="card-container">
+            <!-- Kartu-kartu akan dimasukkan di sini oleh jQuery -->
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Footer Section -->
+        <footer class="bg-light py-4 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo"
+                            class="footer-logo">
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Info</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Testimonial</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Perusahaan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Bantuan Pelayanan</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li>Jl. Contoh No. 1A</li>
+                            <li>Bandung, Jawa Barat</li>
+                            <li>Indonesia</li>
+                            <li>(022) 80808080</li>
+                            <li>Contact@gmail.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom bg-primary text-white text-center py-3">
+                <div class="container">
+                    <p class="mb-0">Copyright 2024 X-Plore Indonesia. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Memeriksa apakah user_id ada di localStorage
+            if (localStorage.getItem('user_id')) {
+                $('#loginButton').hide();
+                $('#profileDropdown').removeClass('d-none');
+            } else {
+                $('#loginButton').show();
+                $('#profileDropdown').addClass('d-none');
+            }
+
+            // Event handler untuk logout
+            $('#logoutButton').on('click', function (event) {
+                event.preventDefault();
+                localStorage.clear();
+                window.location.href = 'login.html';
+            });
+
+            // Memuat data dari API dan membuat kartu
+            var destinasiData = [];
+            $.ajax({
+                url: 'http://localhost:3000/api/destinasi',
+                method: 'GET',
+                success: function (response) {
+                    if (response.code === 0) {
+                        destinasiData = response.data;
+                        displayDestinasi(destinasiData);
+                    } else {
+                        console.error('Gagal memuat data: ' + response.info);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan saat memuat data: ' + error);
+                }
+            });
+
+            // Fungsi untuk menampilkan destinasi
+            function displayDestinasi(data) {
+                var cardContainer = $('#card-container');
+                cardContainer.empty(); // Mengosongkan kontainer sebelum menambahkan data
+                data.forEach(function (destinasi) {
+                    var cardHtml = `
+                        <div class="col-md-4 mb-4">
+                            <div class="card shadow-sm">
+                                <img src="${destinasi.images}" class="card-img-top" alt="${destinasi.name}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${destinasi.name}</h5>
+                                    <p class="card-subtitle text-muted">${destinasi.daerah}, ${destinasi.negara}</p>
+                                    <p class="card-text">${destinasi.deskripsi}</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="#" class="btn btn-primary">Lihat Detail</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    cardContainer.append(cardHtml);
+                });
+            }
+
+            // Fungsi pencarian
+            $('#search-form').on('submit', function (event) {
+                event.preventDefault();
+                var searchTerm = $('#search-input').val().toLowerCase();
+                var filteredDestinasi = destinasiData.filter(function (destinasi) {
+                    return destinasi.name.toLowerCase().includes(searchTerm) ||
+                           destinasi.daerah.toLowerCase().includes(searchTerm) ||
+                           destinasi.negara.toLowerCase().includes(searchTerm);
+                });
+                displayDestinasi(filteredDestinasi);
+            });
+        });
+    </script>
+</body>
+
+</html>

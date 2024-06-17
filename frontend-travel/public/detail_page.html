@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplore Indonesia</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .rating-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .rating-text {
+            margin-left: 8px;
+            font-weight: bold;
+        }
+
+        .like-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .like-button .btn {
+            margin-left: 10px;
+        }
+
+        .description-title {
+            font-weight: bold;
+            margin-top: 16px;
+        }
+
+        .button-group {
+            margin-top: 16px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .review-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .review-card img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        .review-card h6 {
+            font-weight: bold;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .review-card .stars {
+            color: #ffc107;
+        }
+
+        .review-date {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: right;
+        }
+
+        .card-img-top {
+            border-radius: 15px;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorite.html">Favorite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <!-- Button Masuk -->
+                    <li class="nav-item" id="loginButton">
+                        <a class="btn btn-primary" href="login.html">Masuk</a>
+                    </li>
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown d-none" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://placehold.jp/150x150.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="user.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-5">
+        <div class="row justify-content-center">
+            <!-- Div untuk gambar -->
+            <div class="col-8">
+                <div class="card shadow-sm mx-auto" style="width: fit-content;">
+                    <img id="destinasi-img" src="" class="card-img-top" alt="Destinasi Image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Container untuk deskripsi dan rating -->
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <!-- Konten Deskripsi -->
+            <div class="col-md-8">
+                <h4 class="fw-bold" id="destinasi-name">Nama Destinasi</h4>
+                <p class="text-muted" id="destinasi-daerah-negara">Daerah, Negara</p>
+                <p class="description-title">Description</p>
+                <p id="destinasi-deskripsi">Deskripsi destinasi akan ditampilkan di sini.</p>
+            </div>
+            <!-- Konten Rating -->
+            <div class="col-md-4">
+                <div class="rating-container">
+                    <i class="bi bi-star-fill text-warning"></i>
+                    <span id="average-rating" class="rating-text">4.6 (1242 Review)</span>
+                </div>
+                <div class="like-button">
+                    <i class="bi bi-heart"></i>
+                    <button class="btn btn-primary btn-sm">Like</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3" id="btnEdit">
+            <div class="col-12 button-group">
+                <button class="btn btn-primary">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Container untuk review -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h4>
+                    <i class="bi bi-star-fill text-warning"></i> <span id="overall-rating">4.6 (1242 Review)</span>
+                </h4>
+            </div>
+        </div>
+        <div class="row mt-4" id="review-container">
+            <!-- Review cards akan dimuat di sini oleh jQuery -->
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Add Wisata Button -->
+        <div class="row justify-content-end mt-4" id="btnAdd">
+            <div class="col-md-3 text-end">
+                <button id="addReviewButton" class="btn btn-primary btn-lg">
+                    <i class="bi bi-plus-circle"></i> Add Review
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="bg-light py-4 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo" class="footer-logo">
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Info</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Testimonial</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Perusahaan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Bantuan Pelayanan</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li>Jl. Contoh No. 1A</li>
+                            <li>Bandung, Jawa Barat</li>
+                            <li>Indonesia</li>
+                            <li>(022) 80808080</li>
+                            <li>Contact@gmail.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom bg-primary text-white text-center py-3">
+                <div class="container">
+                    <p class="mb-0">Copyright 2024 X-Plore Indonesia. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fungsi untuk mendapatkan parameter query dari URL
+            function getQueryParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+
+            // Mendapatkan destinasi_id dari URL
+            const destinasiId = getQueryParameter('id');
+            if (!destinasiId) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'ID destinasi tidak ditemukan di URL',
+                });
+                return;
+            }
+
+            // Mengambil data destinasi dari API
+            $.ajax({
+                url: `http://localhost:3000/api/destinasi/${destinasiId}`,
+                method: 'GET',
+                success: function (response) {
+                    if (response.code === 0) {
+                        const destinasi = response.data;
+
+                        // Menampilkan data di halaman
+                        $('#destinasi-img').attr('src', destinasi.images);
+                        $('#destinasi-name').text(destinasi.name);
+                        $('#destinasi-daerah-negara').text(`${destinasi.daerah}, ${destinasi.negara}`);
+                        $('#destinasi-deskripsi').text(destinasi.deskripsi);
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Gagal mengambil data destinasi: ' + response.info,
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan saat mengambil data destinasi:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat mengambil data destinasi.',
+                    });
+                }
+            });
+
+            // Mengambil data review dari API
+            $.ajax({
+                url: `http://localhost:3000/api/reviews/destinasi/${destinasiId}`,
+                method: 'GET',
+                success: function (response) {
+                    if (response.code === 0) {
+                        const reviews = response.data;
+                        const reviewContainer = $('#review-container');
+                        reviewContainer.empty(); // Kosongkan kontainer sebelum menambahkan data
+
+                        // Menghitung rata-rata rating dan total review
+                        let totalRating = 0;
+                        reviews.forEach(review => {
+                            totalRating += review.rating;
+                        });
+
+                        const averageRating = (totalRating / reviews.length).toFixed(1);
+                        const totalReviews = reviews.length;
+
+                        // Tampilkan rata-rata rating dan total review
+                        $('#overall-rating').text(`${averageRating} (${totalReviews} Review${totalReviews > 1 ? 's' : ''})`);
+                        $('#average-rating').text(`${averageRating} (${totalReviews} Review${totalReviews > 1 ? 's' : ''})`);
+
+                        reviews.forEach(review => {
+                            const userName = review.User.name || 'Unknown';
+                            const userLocation = `${review.User.email}`; // Ganti ini dengan lokasi pengguna jika ada
+                            const userComment = review.komentar;
+                            const reviewDate = new Date(review.created_at).toLocaleDateString();
+                            const rating = review.rating;
+
+                            let starsHtml = '';
+                            for (let i = 0; i < rating; i++) {
+                                starsHtml += '<i class="bi bi-star-fill"></i>';
+                            }
+                            for (let i = rating; i < 5; i++) {
+                                starsHtml += '<i class="bi bi-star"></i>';
+                            }
+
+                            const reviewHtml = `
+                                <div class="col-md-3">
+                                    <div class="card review-card">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <img src="https://placehold.jp/150x150.png" alt="${userName}">
+                                                <div class="ms-3">
+                                                    <h6>${userName}</h6>
+                                                    <p class="text-muted">${userLocation}</p>
+                                                </div>
+                                            </div>
+                                            <div class="stars mt-2">
+                                                ${starsHtml}
+                                            </div>
+                                            <p class="mt-2">${userComment}</p>
+                                            <div class="review-date">${reviewDate}</div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            reviewContainer.append(reviewHtml);
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Gagal mengambil data review: ' + response.info,
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan saat mengambil data review:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat mengambil data review.',
+                    });
+                }
+            });
+
+            // Mengarahkan ke halaman add_review.html dengan id
+            $('#addReviewButton').on('click', function () {
+                window.location.href = `add_review.html?id=${destinasiId}`;
+            });
+
+            // Memeriksa apakah user_id ada di localStorage
+            if (localStorage.getItem('user_id')) {
+                $('#loginButton').hide();
+                $('#profileDropdown').removeClass('d-none');
+                $('#btnEdit').removeClass('d-none');
+                $('#btnAdd').removeClass('d-none');
+            } else {
+                $('#loginButton').show();
+                $('#profileDropdown').addClass('d-none');
+                $('#btnEdit').addClass('d-none');
+                $('#btnAdd').addClass('d-none');
+            }
+
+            // Event handler untuk logout
+            $('#logoutButton').on('click', function (event) {
+                event.preventDefault();
+                localStorage.clear();
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

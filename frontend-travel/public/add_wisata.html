@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplore Indonesia</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 50px;
+            max-width: 500px;
+        }
+
+        .form-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        .form-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <!-- Tambahkan pustaka SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h4 class="form-title">Tambahkan Wisata</h4>
+            <form id="formDestinasi">
+                <label for="namaWisata" class="form-label">Nama Wisata</label>
+                <input type="text" id="namaWisata" class="form-control" placeholder="Masukkan nama wisata" required>
+
+                <label for="daerahWisata" class="form-label">Daerah Wisata</label>
+                <input type="text" id="daerahWisata" class="form-control" placeholder="Masukkan Daerah" required>
+
+                <label for="alamatWisata" class="form-label">Alamat Wisata</label>
+                <input type="text" id="alamatWisata" class="form-control" placeholder="Masukkan Alamat" required>
+
+                <label for="deskripsiWisata" class="form-label">Deskripsi Wisata</label>
+                <textarea id="deskripsiWisata" class="form-control" rows="4" placeholder="Tuliskan deskripsi wisata" required></textarea>
+
+                <label for="gambarWisata" class="form-label">Gambar Wisata</label>
+                <input type="file" id="gambarWisata" class="form-control" accept="image/*" required>
+
+                <button type="submit" class="btn btn-primary form-button mt-4">Add Wisata</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-center mb-3">
+                    <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo" class="footer-logo">
+                </div>
+                <div class="col-md-2">
+                    <h5>Info</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Testimonial</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Perusahaan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Bantuan Pelayanan</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Kontak</h5>
+                    <ul class="list-unstyled">
+                        <li>Jl. Contoh No. 1A</li>
+                        <li>Bandung, Jawa Barat</li>
+                        <li>Indonesia</li>
+                        <li>(022) 80808080</li>
+                        <li>Contact@gmail.id</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom bg-primary text-white text-center py-3">
+            <div class="container">
+                <p class="mb-0">Copyright 2024 X-Plore Indonesia. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#formDestinasi').on('submit', function (event) {
+                event.preventDefault();
+
+                var name = $('#namaWisata').val();
+                var daerah = $('#daerahWisata').val();
+                var alamat = $('#alamatWisata').val();
+                var negara = 'Indonesia';
+                var deskripsi = $('#deskripsiWisata').val();
+                var gambarFile = $('#gambarWisata')[0].files[0];
+
+                if (!gambarFile) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Harap pilih gambar.',
+                    });
+                    return;
+                }
+
+                // Validasi ukuran gambar
+                if (gambarFile.size > 1024 * 1024) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Ukuran gambar maksimal 1MB.',
+                    });
+                    return;
+                }
+
+                // Konversi gambar ke base64
+                var reader = new FileReader();
+                reader.onloadend = function () {
+                    var base64Gambar = reader.result;
+
+                    // Persiapkan payload
+                    var payload = {
+                        name: name,
+                        daerah: daerah,
+                        negara: negara,
+                        alamat: alamat,
+                        images: base64Gambar,
+                        deskripsi: deskripsi
+                    };
+
+                    // Lakukan AJAX POST
+                    $.ajax({
+                        url: 'http://localhost:3000/api/destinasi',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(payload),
+                        success: function (response) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: 'Data berhasil ditambahkan!',
+                            });
+                            // Clear form
+                            $('#formDestinasi')[0].reset();
+                        },
+                        error: function (xhr, status, error) {
+                            console.log('Error:', error);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Terjadi kesalahan saat menambahkan data.',
+                            });
+                        }
+                    });
+                }
+                reader.readAsDataURL(gambarFile);
+            });
+        });
+    </script>
+</body>
+
+</html>

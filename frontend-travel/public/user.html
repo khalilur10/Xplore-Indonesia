@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xplore Indonesia</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+    <style>
+        .header-bg {
+            background-image: url('public/images/Bali.png'); /* Sesuaikan dengan path gambar latar belakang */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            object-fit: cover;
+            position: absolute;
+            top: 220px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .profile-info h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .profile-info p {
+            color: gray;
+            font-size: 1rem;
+        }
+
+        .edit-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .edit-button .btn {
+            border-radius: 20px;
+        }
+
+        .review-container {
+            margin-top: 20px;
+        }
+
+        .review-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .review-card h5 {
+            font-size: 1.2rem;
+        }
+
+        .review-card p {
+            font-size: 0.9rem;
+        }
+
+        .review-card .badge {
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="favorite.html">Favorite</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                    <!-- Button Masuk -->
+                    <li class="nav-item" id="loginButton">
+                        <a class="btn btn-primary" href="login.html">Masuk</a>
+                    </li>
+                    <!-- Profile Dropdown -->
+                    <li class="nav-item dropdown d-none" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://placehold.jp/150x150.png" alt="Profile" class="rounded-circle" style="width: 30px; height: 30px;">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="user.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="#" id="logoutButton">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0">
+        <!-- Header Background -->
+        <div class="header-bg">
+            <!-- Profile Picture -->
+            <img src="https://placehold.jp/150x150.png" alt="Profile Picture" class="profile-pic">
+        </div>
+    </div>
+
+    <!-- Profile Info -->
+    <div class="container profile-info">
+        <h1 id="profile-name">M. Fikri</h1>
+        <p id="profile-location">Padang, Sumatera Barat</p>
+        <div class="edit-button">
+            <button class="btn btn-outline-primary">Edit Profile</button>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Card Section -->
+    <div class="container mt-5 review-container" id="review-cards-container">
+        <!-- Template Card -->
+        <div class="col-md-4 d-none" id="review-card-template">
+            <div class="card shadow-sm review-card">
+                <img src="" class="card-img-top" alt="Destinasi Image" id="card-img">
+                <div class="card-body">
+                    <h5 class="card-title" id="card-title">Destinasi Name</h5>
+                    <p class="card-subtitle text-muted" id="card-location">Location</p>
+                    <p class="card-text" id="card-comment">Review Comment</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="badge bg-warning text-dark" id="card-rating">
+                            <i class="bi bi-star-fill"></i> 5.0 (Review)
+                        </span>
+                        <a href="#" class="btn btn-primary" id="card-link">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Footer Section -->
+        <footer class="bg-light py-4 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-3">
+                        <img src="https://c.animaapp.com/pz8AH8KY/img/picture1-1@2x.png" alt="Xplore Logo" class="footer-logo">
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Info</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Tentang Kami</a></li>
+                            <li><a href="#">Testimonial</a></li>
+                            <li><a href="#">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Perusahaan</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Syarat & Ketentuan</a></li>
+                            <li><a href="#">Kebijakan Privasi</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Bantuan Pelayanan</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Kontak</h5>
+                        <ul class="list-unstyled">
+                            <li>Jl. Contoh No. 1A</li>
+                            <li>Bandung, Jawa Barat</li>
+                            <li>Indonesia</li>
+                            <li>(022) 80808080</li>
+                            <li>Contact@gmail.id</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom bg-primary text-white text-center py-3">
+                <div class="container">
+                    <p class="mb-0">Copyright 2024 X-Plore Indonesia. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+    <script src="public/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Fungsi untuk mendapatkan user_id dari localStorage
+            const userId = localStorage.getItem('user_id');
+
+            // Periksa apakah user_id ada
+            if (!userId) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'User tidak ditemukan di localStorage',
+                });
+                return;
+            }
+
+            // Panggil API untuk mengambil data review berdasarkan user_id
+            $.ajax({
+                url: `http://localhost:3000/api/reviews/user/${userId}`,
+                method: 'GET',
+                success: function (response) {
+                    console.log(response);
+                    if (response.code === 0) {
+                        const reviews = response.data;
+                        const reviewContainer = $('#review-cards-container');
+                        const cardTemplate = $('#review-card-template');
+
+                        // Kosongkan kontainer sebelum menambahkan data
+                        reviewContainer.empty();
+
+                        reviews.forEach(review => {
+                            const cardClone = cardTemplate.clone();
+                            cardClone.removeClass('d-none');
+                            cardClone.find('#card-img').attr('src', review.Destinasi.images);
+                            cardClone.find('#card-title').text(review.Destinasi.name);
+                            cardClone.find('#card-location').text(`${review.Destinasi.daerah}, ${review.Destinasi.negara}`);
+                            cardClone.find('#card-comment').text(review.komentar);
+                            cardClone.find('#card-rating').html(`<i class="bi bi-star-fill"></i> ${review.rating} (${review.User.name})`);
+                            cardClone.find('#card-link').attr('href', `detail_page.html?id=${review.destinasi_id}`);
+                            reviewContainer.append(cardClone);
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: 'Gagal mengambil data review: ' + response.info,
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Terjadi kesalahan saat mengambil data review:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Terjadi kesalahan saat mengambil data review.',
+                    });
+                }
+            });
+
+            // Memeriksa apakah user_id ada di localStorage
+            if (localStorage.getItem('user_id')) {
+                $('#loginButton').hide();
+                $('#profileDropdown').removeClass('d-none');
+            } else {
+                $('#loginButton').show();
+                $('#profileDropdown').addClass('d-none');
+            }
+
+            // Event handler untuk logout
+            $('#logoutButton').on('click', function (event) {
+                event.preventDefault();
+                localStorage.clear();
+                window.location.href = 'login.html';
+            });
+        });
+    </script>
+</body>
+
+</html>
